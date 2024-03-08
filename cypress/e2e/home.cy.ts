@@ -12,12 +12,12 @@ describe('home page', () => {
   //each "it" you see within a given spec file is a single test, and it takes the same arguments as the describe() function: a string describing the test and a callback function
   it('the h1 contains the correct text', () => {
     //now, tell it what element to look for with the .get() method:
-    cy.get("[data-test='hero-heading']").contains("Testing Next.js Applications with Cypress")
+    cy.getByData("hero-heading").contains("Testing Next.js Applications with Cypress")
   })
 
   //What happens if there aren't any data-test or data attributes, and we can't change the HTML?
   //we don't need to keep running that first test every time we save, so add "only" on your it block to tell it to only run this test. you can add this to multiple tests
-  it.only('the features on the homepage are correct', () => {
+  it('the features on the homepage are correct', () => {
     //cy.get("dt") gives us back an array of three elements, so in order to get a specific index we can use the "eq([index])" cypress command, like so:
     cy.get("dt")
       .eq(0)

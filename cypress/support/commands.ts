@@ -1,4 +1,16 @@
 /// <reference types="cypress" />
+
+//RF notes: The following allows us to "get" data test attributes in a less verbose way. We're using typescript, so first have to add the type definition for the custom command in {}. We extend the Chainable interface from the Cypress namespace, which holds common utilities and constants, to make getByData part of it:
+declare namespace Cypress {
+    interface Chainable {
+        getByData(dataTestAttribute: string): Chainable<JQuery<HTMLElement>>
+    }
+}
+
+//Now we specify what getByData will do:
+Cypress.Commands.add('getByData', (selector) => {
+    return cy.get(`[data-test=${selector}]`)
+})
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
